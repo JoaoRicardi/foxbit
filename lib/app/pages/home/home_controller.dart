@@ -17,7 +17,6 @@ class HomeController extends Controller {
   @override
   void onDisposed() {
     ws.disconnect();
-    
     super.onDisposed();
   }
 

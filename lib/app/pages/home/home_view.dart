@@ -16,8 +16,16 @@ class HomePageState extends ViewState<HomePage, HomeController> {
     appBar: AppBar(
       title: const Text('Home Screen'),
     ),
-    body: const Center(
-      child: Text('Olá Mundo!'),
+    body: ControlledWidgetBuilder<HomeController>(
+        builder: (context, controller) {
+          return StreamBuilder<Map<dynamic, dynamic>>(
+            stream: controller.ws.stream.asBroadcastStream(),
+            initialData: {},
+            builder: (context, snapshot){
+              return Text(snapshot.data.toString());
+            }
+          );
+        }
     ),
   );
 }

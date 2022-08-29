@@ -20,7 +20,7 @@ class FoxbitWebSocket {
   int get lastId => _id - _idStepSize;
 
   FoxbitWebSocket() {
-    _socket = IOWebsok(host: 'api.foxbit.com.br?origin=android', tls: true);
+    _socket = IOWebsok(host: 'api.foxbit.com.br?origin=iOS', tls: true);
   }
   
   void connect() {
