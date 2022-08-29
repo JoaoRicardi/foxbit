@@ -27,7 +27,7 @@ class HomeController extends Controller {
   }
 
   void heartbeatOnComplete() {
-    _scheduleNextHeartbeat();
+    // _scheduleNextHeartbeat();
   }
 
   void heartbeatOnError(dynamic e) {
