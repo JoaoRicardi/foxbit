@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foxbit_hiring_test_template/src/app/modules/home/home_page.dart';
 import 'package:foxbit_hiring_test_template/src/core/navigation/navigation_handler.dart';
 
 
@@ -10,7 +11,13 @@ class NavigationHandlerImp implements INavigationHandler {
   @override
   Route appRoutes(RouteSettings settings) {
     switch (settings.name) {
-
+      case HomePage.route:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_){
+            return HomePage();
+          }
+        );
 
       default:
         //em caso de rota desconhecida
