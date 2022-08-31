@@ -14,6 +14,7 @@ dependencies:
   flutter_clean_architecture: ^4.1.1
   rxdart: ^0.25.0
   websok: ^2.1.2
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +27,11 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/fonts/
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy-Light.otf
+          weight: 400
+        - asset: assets/fonts/Gilroy-ExtraBold.otf
+          weight: 700

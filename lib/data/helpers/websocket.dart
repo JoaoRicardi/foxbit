@@ -46,14 +46,13 @@ class FoxbitWebSocket {
   }
 
   Stream<Map> get stream => streamController.stream;
-//{"m":0,"i":0,"n":"getInstruments","o":"{}"}
 
   @protected
   String prepareMessage(String method, dynamic objectData) {
     final Map data = {
       "m": 0,
-      "i": 0,
-      "n": "getInstruments",
+      "i": _id,
+      "n": method,
       "o": json.encode(objectData)
     };
 

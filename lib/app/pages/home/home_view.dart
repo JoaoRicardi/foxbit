@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:foxbit_hiring_test_template/app/pages/home/home_controller.dart';
+import 'package:foxbit_hiring_test_template/app/widgets/home/currency_item.dart';
 
 class HomePage extends View {
   @override
@@ -16,7 +15,15 @@ class HomePageState extends ViewState<HomePage, HomeController> {
   Widget get view => Scaffold(
     key: globalKey,
     appBar: AppBar(
-      title: const Text('Home Screen'),
+      title: const Text('Cotação',style: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
+        fontFamily: 'Gilroy'
+      ),),
+      centerTitle: false,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
     ),
     body: ControlledWidgetBuilder<HomeController>(
         builder: (context, controller) {
@@ -25,25 +32,15 @@ class HomePageState extends ViewState<HomePage, HomeController> {
             initialData: const {},
             builder: (context, snapshot){
 
-              if(snapshot.data.isNotEmpty){
-                print(snapshot.data);
+              if(snapshot.data != null && (snapshot.data?.isNotEmpty ?? false)){
 
-                var res = HomeResponseDTO.fromJson(snapshot.data);
+                final res = HomeResponseDTO.fromJson(snapshot.data);
 
                 return ListView.builder(
                   itemCount: res.itens.length,
                   itemBuilder: (context, index){
-                    var obj = res.itens[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 80,
-                        child: Center(
-                          child: Text(obj.symbol),
-                        ),
-                      ),
-                    );
+                    final obj = res.itens[index];
+                    return CurrencyItemView(obj);
                   }
                 );
 
@@ -59,14 +56,16 @@ class HomePageState extends ViewState<HomePage, HomeController> {
   );
 }
 
-//
+
+
+
 class HomeResponseDTO{
   final int m;
   final int i;
   final String method;
   final List<HomeResponseItemModel> itens;
 
-  HomeResponseDTO({this.m, this.i, this.method, this.itens});
+  HomeResponseDTO({this.m,this.i,this.method,this.itens});
 
   static HomeResponseDTO fromJson(Map<dynamic,dynamic> json){
 
@@ -111,37 +110,16 @@ class HomeResponseItemModel{
     var list = <HomeResponseItemModel>[];
 
     json.forEach((element) {
-      list.add(HomeResponseItemModel.fromJson(element as Map<String, dynamic>));
+
+      var item = HomeResponseItemModel.fromJson(element as Map<String, dynamic>);
+
+      if([1,2,4,6,10].contains(item.instrumentId)) {
+        list.add(item);
+      }
     });
 
+
+    list.sort((a,b) => a.instrumentId.compareTo(b.instrumentId));
     return list;
   }
-  // "Product1" -> 1
-  // "Product1Symbol" -> "BTC"
-  // "Product2" -> 2
-  // "Product2Symbol" -> "BRL"
-  // "InstrumentType" -> "Standard"
-  // "VenueInstrumentId" -> 1
-  // "VenueId" -> 1
-  // "SortIndex" -> 0
-  // "SessionStatus" -> "Running"
-  // "PreviousSessionStatus" -> "Paused"
-  // "SessionStatusDateTime" -> "2020-07-11T01:27:02.851Z"
-  // "SelfTradePrevention" -> true
-  // "QuantityIncrement" -> 1e-8
-  // "PriceIncrement" -> 0.01
-  // "MinimumQuantity" -> 1e-8
-  // "MinimumPrice" -> 0.01
-  // "VenueSymbol" -> "BTC/BRL"
-  // "IsDisable" -> false
-  // "MasterDataId" -> 0
-  // "PriceCollarThreshold" -> 0
-  // "PriceCollarPercent" -> 0
-  // "PriceCollarEnabled" -> false
-  // "PriceFloorLimit" -> 0
-  // "PriceFloorLimitEnabled" -> false
-  // "PriceCeilingLimit" -> 0
-  // "PriceCeilingLimitEnabled" -> false
-  // "CreateWithMarketRunning" -> true
-  // "AllowOnlyMarketMakerCounterParty" -> false
 }

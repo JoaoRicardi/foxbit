@@ -2,7 +2,7 @@ import 'package:foxbit_hiring_test_template/data/helpers/websocket.dart';
 import 'package:foxbit_hiring_test_template/domain/repositories/heartbeat_repository.dart';
 
 class HeartbeatRepository implements IHeartbeatRepository {
-  final String _eventName = 'PING';
+  final String _eventName = 'getInstruments';
 
   @override
   Future<Map> send(FoxbitWebSocket ws) {
