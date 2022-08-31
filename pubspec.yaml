@@ -4,17 +4,30 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.16.2 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
   cupertino_icons: ^1.0.0
-  flutter_clean_architecture: ^4.1.1
-  rxdart: ^0.25.0
-  websok: ^2.1.2
+#  comentado por nao precisar de plugins para implementacao de arquitetura/padroes de projeto
+#  flutter_clean_architecture: ^4.1.1
+
+#  comentado por nao estar atualizado pra nullsafety
+#  websok: ^2.1.2
+
+#  Sokcet migrado e recomendado pela doc do flutter
+  web_socket_channel: ^2.2.0
+  rxdart: ^0.27.5
+
+# formatacao de valores e datas
   intl: ^0.17.0
+
+# injecao de dependencias
+  get_it: ^7.2.0
+
+
 
 dev_dependencies:
   flutter_test:
