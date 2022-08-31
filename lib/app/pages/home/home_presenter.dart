@@ -1,14 +1,14 @@
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:foxbit_hiring_test_template/data/helpers/websocket.dart';
-import 'package:foxbit_hiring_test_template/data/repositories/heartbeat_repository.dart';
-import 'package:foxbit_hiring_test_template/domain/usecases/heartbeat_usecase.dart';
+import 'package:foxbit_hiring_test_template/data/repositories/list_currencies_repository.dart';
+import 'package:foxbit_hiring_test_template/domain/usecases/list_currencies_usecase.dart';
 
 class HomePresenter extends Presenter {
 
   Function heartbeatOnComplete;
   Function(dynamic) heartbeatOnError;
 
-  final HeartbeatUseCase _heartbeatUseCase = HeartbeatUseCase(HeartbeatRepository());
+  final ListCurrenciesUseCase _heartbeatUseCase = ListCurrenciesUseCase(ListCurrenciesRepository());
 
   void sendHeartbeat(FoxbitWebSocket ws) {
     _heartbeatUseCase.execute(_HeartBeatObserver(this), ws);

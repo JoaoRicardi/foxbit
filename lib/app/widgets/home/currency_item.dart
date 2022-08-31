@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:foxbit_hiring_test_template/app/pages/home/home_view.dart';
 import 'package:foxbit_hiring_test_template/app/widgets/home/currency_item_controller.dart';
+import 'package:foxbit_hiring_test_template/domain/entities/currency/currency.dart';
 import 'package:intl/intl.dart';
 
 class CurrencyItemView extends View{
 
-  final HomeResponseItemModel item;
+  final CurrencyModel item;
 
   CurrencyItemView(this.item);
 
