@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:foxbit_hiring_test_template/src/app/modules/home/controller/home_controller.dart';
+import 'package:foxbit_hiring_test_template/src/core/base/base_controller.dart';
+import 'package:foxbit_hiring_test_template/src/core/base/base_stream.dart';
 import 'package:foxbit_hiring_test_template/src/domain/entity/currency/currency_details.dart';
 import 'package:foxbit_hiring_test_template/src/domain/entity/currency/currency_item.dart';
 import 'package:foxbit_hiring_test_template/src/domain/repositories/currency/currency_repository.dart';
@@ -19,6 +21,7 @@ class CurrencyController implements BaseController, BaseStream<CurrencyDetail> {
   dispose() {
     _subscription.cancel();
     _streamController.done;
+    _currencyRepository.dispose();
   }
 
   @override

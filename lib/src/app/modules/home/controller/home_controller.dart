@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:foxbit_hiring_test_template/src/core/base/base_controller.dart';
+import 'package:foxbit_hiring_test_template/src/core/base/base_stream.dart';
 import 'package:foxbit_hiring_test_template/src/domain/entity/currency/currency_item.dart';
 import 'package:foxbit_hiring_test_template/src/domain/repositories/currency/currency_repository.dart';
 import 'package:rxdart/rxdart.dart';
@@ -18,6 +20,7 @@ class HomeController implements BaseController, BaseStream<List<CurrencyModel>> 
   dispose() {
     _subscription?.cancel();
     _streamController.done;
+    _currencyRepository.dispose();
   }
 
   @override
@@ -38,12 +41,4 @@ class HomeController implements BaseController, BaseStream<List<CurrencyModel>> 
   Stream<List<CurrencyModel>> get stream => _streamController.stream.asBroadcastStream();
 }
 
-abstract class BaseStream<T> {
-  Stream<T> get stream;
-}
 
-abstract class BaseController {
-  init([dynamic params]);
-
-  dispose();
-}

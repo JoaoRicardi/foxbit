@@ -4,11 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:foxbit_hiring_test_template/src/core/data_soruce/web_socket.dart';
 import 'package:foxbit_hiring_test_template/src/domain/entity/currency/currency_details.dart';
 import 'package:foxbit_hiring_test_template/src/domain/entity/currency/currency_item.dart';
+import 'package:foxbit_hiring_test_template/src/domain/entity/response/socket_response.dart';
 import 'package:foxbit_hiring_test_template/src/domain/repositories/currency/currency_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CurrencyRepository implements ICurrencyRepository {
-  final FoxbiSocket socket;
+
+  final IFoxbitSocket socket;
 
   CurrencyRepository(this.socket);
 
@@ -52,5 +54,10 @@ class CurrencyRepository implements ICurrencyRepository {
     }
 
     return availableCurrenciesController.stream;
+  }
+
+  @override
+  dispose() {
+    socket.dispose();
   }
 }

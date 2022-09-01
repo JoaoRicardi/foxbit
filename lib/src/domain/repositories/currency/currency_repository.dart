@@ -4,4 +4,6 @@ import 'package:foxbit_hiring_test_template/src/domain/entity/currency/currency_
 abstract class ICurrencyRepository {
   Stream<List<CurrencyModel>> getAvailableCurrencies();
   Stream<CurrencyDetail> getCurrencyDetail(int id);
+
+  dispose();
 }

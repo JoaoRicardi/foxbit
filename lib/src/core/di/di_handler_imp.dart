@@ -32,7 +32,7 @@ class DIHandlerImp implements IDIHandler {
   }
 
   _registerData(){
-    _getIt.registerFactory<ICurrencyRepository>(() => CurrencyRepository(FoxbiSocket()));
+    _getIt.registerFactory<ICurrencyRepository>(() => CurrencyRepository(FoxbitSocket()));
   }
 
 

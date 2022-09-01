@@ -24,6 +24,12 @@ class _HomePageState extends State<HomePage> with FoxbitBaseWidget {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
