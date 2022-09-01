@@ -80,6 +80,7 @@ class _CurrencyListItemState extends State<CurrencyListItem> with FoxbitBaseWidg
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 22, 6, 22),
+                      key: Key('asset_${widget.currency.instrumentId}'),
                       child: Image.asset('assets/images/${widget.currency.instrumentId}.png'),
                     ),
                     Column(

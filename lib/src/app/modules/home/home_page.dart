@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> with FoxbitBaseWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      key: Key('home_page_scafold_key'),
       appBar: AppBar(
         title: const Text('Cotação',style: TextStyle(
             color: Colors.black,
