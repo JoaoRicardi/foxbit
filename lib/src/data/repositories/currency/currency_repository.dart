@@ -21,7 +21,6 @@ class CurrencyRepository implements ICurrencyRepository {
     try {
       socket.send("getInstruments", {});
       socket.stream.listen((SocketResponse event) {
-        print(event);
 
         if(event.data is List && (event.data as List).isNotEmpty) {
           var obj = CurrencyModel.fromJsonList(event.data as List);

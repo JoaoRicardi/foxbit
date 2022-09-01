@@ -48,7 +48,24 @@ main(){
       });
 
     });
+  });
 
+  group('Test get current detail', (){
+    test('Get currency detail', () async {
+
+      final Map response = {
+        'SubscribeLevel1': '{"m":0,"i":0,"n":"SubscribeLevel1","o":"{\\\"OMSId\\\":1,\\\"InstrumentId\\\":10,\\\"MarketId\\\":\\\"xrpbrl\\\",\\\"BestBid\\\":1.692,\\\"BestOffer\\\":1.7105,\\\"LastTradedPx\\\":1.6941,\\\"LastTradedQty\\\":14.615404,\\\"LastTradeTime\\\":1661993316,\\\"SessionOpen\\\":1.6986,\\\"SessionHigh\\\":1.7202,\\\"SessionLow\\\":1.6962,\\\"SessionClose\\\":1.7044,\\\"Volume\\\":14.615404,\\\"CurrentDayVolume\\\":40.4274,\\\"CurrentDayNumTrades\\\":2,\\\"CurrentDayPxChange\\\":0.0082,\\\"Rolling24HrVolume\\\":26278.6611,\\\"Rolling24NumTrades\\\":148,\\\"Rolling24HrPxChange\\\":0.3415,\\\"TimeStamp\\\":1661996212}"}'
+      };
+
+      socket = TestFoxbitWebSocket(response);
+      _repository = CurrencyRepository(socket);
+
+      await _repository.getCurrencyDetail(99).listen((event) {
+        expect(event.sessionOpen, 1.6986);
+        expect(event.sessionClose,  1.7044);
+        expect(event.lastValue, 1.6941);
+
+      });
+    });
   });
 }
-///
