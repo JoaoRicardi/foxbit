@@ -14,6 +14,8 @@ class FoxbitSocket implements IFoxbitSocket{
   FoxbitSocket(){
 
     channel.stream.listen((event) {
+      print('event incoming');
+      print(event.toString());
       var parsedResponse = SocketResponse.fromJson(event);
       _streamController.sink.add(parsedResponse);
     });

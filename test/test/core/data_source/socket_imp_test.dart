@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:foxbit_hiring_test_template/src/core/data_soruce/web_socket.dart';
 
 import '../../../utils/mock/data_source/socket_test.dart';
 import '../../../utils/utils.dart';

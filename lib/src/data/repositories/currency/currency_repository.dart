@@ -21,9 +21,16 @@ class CurrencyRepository implements ICurrencyRepository {
     try {
       socket.send("getInstruments", {});
       socket.stream.listen((SocketResponse event) {
-        var obj = CurrencyModel.fromJsonList(event.data as List);
+        print(event);
 
-        availableCurrenciesController.sink.add(obj);
+        if(event.data is List && (event.data as List).isNotEmpty) {
+          var obj = CurrencyModel.fromJsonList(event.data as List);
+
+          availableCurrenciesController.sink.add(obj);
+        }
+        else{
+          availableCurrenciesController.addError("Empty list");
+        }
       });
     } catch (err) {
       debugPrint('CurrencyRepository:getAvailableCurrencies err$err');

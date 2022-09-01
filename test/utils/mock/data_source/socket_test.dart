@@ -10,13 +10,15 @@ class TestFoxbitWebSocket implements IFoxbitSocket {
   final StreamController<SocketResponse> streamController = BehaviorSubject();
   final StreamController _reciveFromServer = BehaviorSubject();
 
-  final Map _responses = {
-    // ignore: unnecessary_string_escapes
-    'PING': '{"m": 0, "i": 0, "n": "Ping", "o": "{\\\"msg\\\":\\\"PONG\\\"}" }',
-    'TEST_METHOD': '{"m": 1, "i": 2, "n": "Test_method", "o": "{}" }'
+  final Map _defaultResponse = {
+    'TEST_METHOD': '{"m": 1, "i": 2, "n": "Test_method", "o": "{}" }',
+    'TEST_LIST_EMPTY': '{"m": 1, "i": 2, "n": "Test_method", "o": "[]" }'
   };
 
-  TestFoxbitWebSocket() {
+  Map? customResponse;
+
+  TestFoxbitWebSocket([Map? customResponse]) {
+    this.customResponse = customResponse;
     _reciveFromServer.stream.listen((event) {
       var parsedResponse = SocketResponse.fromJson(event);
       streamController.sink.add(parsedResponse);
@@ -26,7 +28,7 @@ class TestFoxbitWebSocket implements IFoxbitSocket {
   @override
   void send(String method, dynamic objectData) {
     try {
-      var res = _responses[method];
+      var res = (customResponse ?? _defaultResponse)[method];
       _reciveFromServer.sink.add(res);
     }catch(err){
       throw Exception('Error');
