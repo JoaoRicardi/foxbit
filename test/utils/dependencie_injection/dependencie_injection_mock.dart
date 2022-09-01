@@ -11,8 +11,8 @@ class DIMock {
   final GetIt getIt = GetIt.I;
 
   registerMocks() {
-    _injectCoreModule();
     _injectDataModule();
+    _injectCoreModule();
     _injectPresentationModule();
   }
 
